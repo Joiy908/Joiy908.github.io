@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>632抽奖</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+
+        *{
+            /*border: solid;*/
+            padding: 0;
+            margin: 0;
+            /*保证box大小*/
+            box-sizing: border-box;
+        }
+        /*字体*/
+        body,input{
+            font-family: 黑体,sans-serif;
+        }
+        /*container占满整个屏幕z0*/
+        .container {
+            /*position: relative;*/
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+
+            /*background: url(img/lottery/11.jpg) no-repeat center center; !*加载背景图*! !* 背景图不平铺 *!*/
+            /*background-size: cover; !* 让背景图基于容器大小伸缩 *!*/
+            /*background-attachment: fixed; !* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 *!*/
+            background-color: #579a5b;
+
+            display: grid;
+            grid-template-rows: 60% 40%;
+        }
+        .bigContainer{
+            margin-top: 15%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #imgId1{
+            border-style: dot-dot-dash;
+            width: 638px;
+            height: 954px
+        }
+
+        .smallContainer{
+            display: grid;
+            grid-template-columns: 60% 40%;
+
+            width: 100%;
+            min-height: auto;
+        }
+
+        #imgId{
+            margin-top: 5%;
+            margin-left: 28%;
+            width: 318px;
+            height: 477px
+        }
+        .buttonsContainer{
+            display: grid;
+            grid-template-rows: 30% 30% 10%;
+        }
+        .left-img{
+            display: grid;
+            grid-template-rows: 60% 20% 20%;
+        }
+        #turnID{
+            margin-left: 30%;
+        }
+        input{
+            margin-top: 5%;
+            margin-left: 1%;
+            margin-right: 30%;
+            font-size: 40px;
+            border: none;
+            outline: none;
+            border-radius: 49px;
+            cursor: pointer;
+            background-color: #cb6565;
+            color: #FFFFFF;
+        }
+        .backGround{
+            /*z-index: 2;*/
+            padding-top: 20%;
+            /*position: relative;*/
+            width: 100%;
+            min-height: 100vh;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            /*align-items: center;*/
+            align-content: space-around;
+
+        }
+        .img{
+            margin-top: 15%;
+            width: 318px;
+            height: 477px
+        }
+
+
+    </style>
+    <script>
+
+        let imgs =["img/lottery/1.jpg","img/lottery/2.jpg","img/lottery/3.jpg","img/lottery/4.jpg","img/lottery/5.jpg","img/lottery/6.jpg","img/lottery/7.jpg","img/lottery/8.jpg","img/lottery/9.jpg","img/lottery/10.jpg","img/lottery/11.jpg"];
+        let startID;
+        let index;
+        $(function (){
+            //hide the stop button and background
+            $("#stopID").prop("disabled",true);
+            $(".backGround").hide()
+
+            $("#startID").click(function () {
+                // 循环定时器40毫秒执行一次
+                startID = setInterval(function () {
+                    // get random number 0-10
+                    index = Math.floor(Math.random() * 11);
+                    // change img
+                    $("#imgId").prop("src",imgs[index]);
+                },30);
+                //change button
+                $("#startID").prop("disabled",true);
+                $("#stopID").prop("disabled",false);
+            })
+            $("#stopID").click(function () {
+                //stop interval
+                clearInterval(startID);
+                //change the big picture
+                $("#imgId1").prop("src",imgs[index]).hide();
+                $("#imgId1").show("fast");
+                //change button
+                $("#startID").prop("disabled",false);
+                $("#stopID").prop("disabled",true);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!--    background  #only use to load all the image at first-->
+        <div class="backGround">
+            <img class="img" src="img/lottery/1.jpg">
+            <img class="img" src="img/lottery/2.jpg">
+            <img class="img" src="img/lottery/3.jpg">
+            <img class="img" src="img/lottery/4.jpg">
+            <img class="img" src="img/lottery/5.jpg">
+            <img class="img" src="img/lottery/6.jpg">
+            <img class="img" src="img/lottery/7.jpg">
+            <img class="img" src="img/lottery/8.jpg">
+            <img class="img" src="img/lottery/9.jpg">
+        </div>
+        <!--大相框-->
+        <div class="bigContainer">
+            <img id="imgId1" src="img/lottery/1.jpg">
+        </div>
+        <!--小相框-->
+        <div class="smallContainer">
+            <div class="left-img">
+                <img id="imgId" src="img/lottery/0.jpg">
+<!--                <a href="lottery1.html"><input id="turnID" type="button" value="健康版"></a>-->
+            </div>
+            <div class="buttonsContainer">
+                <!--start button-->
+                <input id="startID" type="button" value="点击开始">
+                <!--stop button-->
+                <input id="stopID" type="button" value="停止滚动">
+                <a href="lottery1.html"><input id="turnID" type="button" value="健康版"></a>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

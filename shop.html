@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- 包含头部信息用于适应不同设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 包含 bootstrap 样式表 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <title>茗润家用电器商行</title>
+
+
+    <!-- 引入 ECharts 文件 -->
+    <script src=" js/echarts-en.min.js"></script>
+    <script src=" js/hebei.js"></script>
+
+    <!-- Favicons -->
+    <link href="img/favicon.png" rel="icon">
+    <link href=" img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+
+    <link href=" vendor/icofont/icofont.min.css" rel="stylesheet"><!--图片上悬浮文字、link-->
+    <link href=" vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href=" vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href=" vendor/venobox/venobox.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href=" css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+      <div class="contact-info float-left">
+        <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
+        <i class="icofont-phone"></i> +1 3315 9838 48
+      </div>
+      <div class="social-links float-right">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="skype"><i class="icofont-skype"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+    </div>
+  </section>
+
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="container">
+
+        <div class="logo float-left">
+            <h1 class="text-light"><a href="632web.html"><span>茗润家用电器商行</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+<!--        <a href="632web.html"><img src=" img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu float-right d-none d-lg-block">
+            <ul>
+                <li class="active"><a href="#header">主页</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#portfolio">商品信息</a></li>
+                <!--
+                <li><a href="#portfolio">经典游戏</a></li> -->
+                <!--                <li class="drop-down"><a href="">经典游戏</a>-->
+                <!--                    <ul>-->
+                <!--                        <li><a href="https://1b319bab-4826-4c3b-bfb9-8b486e63e345-ide.cs50.xyz:8080/632.Web/big_butt.html?#">big butt hitting！</a></li>-->
+                <!--                    </ul>-->
+
+                </li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+            <div class="carousel-inner" role="listbox">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active" style="background-image: url('img/portfolio/page.jpg');">
+                    <div class="carousel-container">
+                        <div class="carousel-content container">
+                            <h2 class="animated fadeInDown">欢迎来到<span>茗润家用电器商行</span></h2>
+                            <!--                            <p class="animated fadeInUp"></p>-->
+                            <a href="#about" class="btn-get-started animated fadeInUp scrollto">查看更多</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+
+            </a>
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+
+            </a>
+
+        </div>
+    </div>
+</section>
+<!-- End Hero -->
+<!-- main -->
+<main id="main">
+    <!-- ======= Team and echarts Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="row no-gutters">
+                <div class="col-lg-6 video-box">
+                    <div id="main1" style="width: 80%;height:400px;border: 1px solid darkred;margin: 20px auto;"></div>
+                    <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main1'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                        title: {
+                            text: '店铺分布',
+                            left: 'left',
+
+                            textStyle: {
+                                fontSize: 30
+                            },
+                            subtext: '@Joiy',
+                            padding: 15
+                        },
+                        tooltip: {
+                            formatter: '{b}'
+                        },
+                        legend: {},
+                        series: [
+                            {
+                                type: 'map',
+                                map: "河北",
+                                <!--label: {},-->
+                                data: [
+
+                                    {
+                                        name: '石家庄市',
+                                        itemStyle: {
+                                            areaColor: 'SkyBlue',
+                                        },
+                                        tooltip: {
+                                            formatter: '{b}-太和电子城2楼d区13号'
+                                        },
+                                    },
+                                ]
+                            }
+                        ]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+
+                    </script>
+                </div>
+                <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
+
+                    <div class="section-title">
+                        <h2>关于我们</h2>
+                        <p>简介</p>
+                    </div>
+
+                    <div class="icon-box aos-init">
+                        <div class="icon"><i class="bx bx-fingerprint"></i></div>
+                        <h4 class="title">主营商品</h4>
+                        <p class="description">剃须刀、理发器、电吹风、电风扇、家用蒸汽熨斗、等家用电器。</p>
+                    </div>
+
+                    <div class="icon-box aos-init">
+                        <div class="icon"><i class="bx bx-gift"></i></div>
+                        <h4 class="title"><a href="#main1">特色商品</a></h4>
+                        <p class="description">飞利浦剃须刀系列</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- End team Section -->
+    <!-- ======= Our Portfolio Section（图片集） ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="section-title">
+          <h2>商品展示</h2>
+<!--          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>-->
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">所有商品</li>
+              <li data-filter=".filter-app">剃须刀</li>
+              <li data-filter=".filter-web">理发器</li>
+              <li data-filter=".filter-card">其他</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/飞利浦S1103.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Shaver series 1000</h4>
+                <p>电动剃须刀 S1103/02</p>
+                <div class="portfolio-links">
+                  <a href="https://www.philips.com.cn/c-p/S1103_02/shaver-series-1000-electric-shaver" title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/飞利浦S7000.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Shaver series 7000</h4>
+                <p>干湿两用电动剃须刀 S7950/18</p>
+                <div class="portfolio-links">
+<!--                  <a href="" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="icofont-eye"></i></a>-->
+                  <a href="https://www.philips.com.cn/c-p/S7950_18/shaver-series-7000-wet-and-dry-electric-shaver#see-all-benefits" title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/飞利浦MAL5598.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>飞利浦漫威英雄系列</h4>
+                <p>美国队长限定款MVL5598/69</p>
+                <div class="portfolio-links">
+<!--                  <a href="img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox" title="App 2"><i class="icofont-eye"></i></a>-->
+                  <a href="https://www.philips.com.cn/c-e/pe/face-shavers/marvel-captain-america" title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap" style="max-height: 467px;">
+              <img src="img/portfolio/飞利浦AT800JD.jpg" class="img-fluid">
+              <div class="portfolio-info">
+                <h4>Shaver series 8000</h4>
+                <p>干湿两用电动剃须刀 S8980/12</p>
+                <div class="portfolio-links">
+                  <a href="img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="icofont-eye"></i></a>
+                  <a href="https://www.philips.com.cn/c-p/S8980_12/shaver-series-8000-wet-and-dry-electric-shaver-with-aquatec-wet-dry" title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets\img\portfolio\超人SS200.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>超人（SID）</h4>
+                <p>全身水洗双刀头便携式刮胡须刀 SS200</p>
+                <div class="portfolio-links">
+<!--                  <a href="img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox" title="Web 2"><i class="icofont-eye"></i></a>-->
+                  <a title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app" >
+            <div class="portfolio-wrap">
+              <img src="assets\img\portfolio\飞科FS371.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>飞科</h4>
+                <p>电动充电式男士便携单刀头水洗剃胡须刀FS371</p>
+                <div class="portfolio-links">
+<!--                  <a href="img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox" title="App 3"><i class="icofont-eye"></i></a>-->
+                  <a href="http://detail.zol.com.cn/shaving_razor/index1238638.shtml"itle="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets\img\portfolio\FC5807.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>飞科</h4>
+                <p>电动理发器FC5807</p>
+                <div class="portfolio-links">
+<!--                  <a href="img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox" title="Card 1"><i class="icofont-eye"></i></a>-->
+                  <a href="#" title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap" style="max-height: 467px;">
+              <img src="assets\img\portfolio\FC5809.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>飞科</h4>
+                <p>电动理发器FC5809</p>
+                <div class="portfolio-links">
+<!--                  <a href="img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox" title="Card 3"><i class="icofont-eye"></i></a>-->
+                  <a href="#" title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/松下EH-NA46.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>松下</h4>
+                <p>电吹风 1600W</p>
+                <div class="portfolio-links">
+<!--                  <a href="img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="icofont-eye"></i></a>-->
+                  <a href="#" title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets\img\portfolio\小电扇1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+<!--                <h4>松下</h4>-->
+                <p>小电扇1</p>
+                <div class="portfolio-links">
+<!--                  <a href="img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="icofont-eye"></i></a>-->
+                  <a href="#" title="查看更多信息"><i class="icofont-external-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        </div>
+
+      </div>
+    </section>
+    <!-- End Our Portfolio Section -->
+
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Mamba</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/ -->
+            Designed by Joiy
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+
+<!-- Vendor JS Files -->
+
+<script src=" vendor/jquery/jquery.min.js"></script>
+<script src=" vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src=" vendor/php-email-form/validate.js"></script>
+<script src=" vendor/jquery-sticky/jquery.sticky.js"></script>
+<script src=" vendor/venobox/venobox.min.js"></script>
+<script src=" vendor/waypoints/jquery.waypoints.min.js"></script>
+<script src=" vendor/counterup/counterup.min.js"></script>
+<script src=" vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+
+<!-- Template Main JS File -->
+<script src=" js/main.js"></script>
+
+</body>
+
+</html>

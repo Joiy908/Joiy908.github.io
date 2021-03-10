@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>632抽奖</title>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        @import url("http://at.alicdn.com/t/font_2318128_gtxmh6te08c.css");
+
+        * {
+            /*border: solid;*/
+            padding: 0;
+            margin: 0;
+            /*保证box大小*/
+            box-sizing: border-box;
+        }
+
+        /*字体*/
+        body, input {
+            font-family: 黑体, sans-serif;
+        }
+
+        /*container占满整个屏幕z0*/
+        .container {
+            /*position: relative;*/
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+
+            /*background: url(img/lottery/11.jpg) no-repeat center center; !*加载背景图*! !* 背景图不平铺 *!*/
+            /*background-size: cover; !* 让背景图基于容器大小伸缩 *!*/
+            /*background-attachment: fixed; !* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 *!*/
+            background-color: #579a5b;
+
+            display: grid;
+            grid-template-rows: 55% 20% 30%;
+        }
+
+        .imageContainer {
+            display: grid;
+            grid-template-rows: 1fr;
+        }
+
+        .imageContainer i {
+            text-align: center;
+            /*line-height: 550px;*/
+            font-size: 700px;
+        }
+
+        .iconfont {
+            margin-top: 25%;
+        }
+
+        .buttonContainer {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        #startID,#stopID{
+            margin: 5% 15%;
+            margin-outside: 10%;
+            height: 200px;
+            font-size: 120px;
+            border: none;
+            outline: none;
+            border-radius: 5rem;
+            cursor: pointer;
+            background-color: #cb6565;
+            color: #FFFFFF;
+
+        }
+        #stopID{
+            /*margin-top: 20%;*/
+            margin: 5% 15%;
+            height: 200px;
+        }
+    </style>
+    <script>
+        $(function () {
+            let className = ["iconfont icon-shuzi-", "iconfont icon-icon-test3", "iconfont icon-icon-test", "iconfont icon-shuzi-1", "iconfont icon-shuzi5", "iconfont icon-shuzi61", "iconfont icon-shuzi1937", "iconfont icon-shuzi", "iconfont icon-icon-test1", "iconfont icon-shuzi1934",];
+            let startID;
+            // get button and bind fuction
+            $("#startID").click(function () {
+                // 循环定时器40毫秒执行一次
+                startID = setInterval(function () {
+                    // get random number 0-9
+                    index = Math.floor(Math.random() * 10);
+                    // change img
+                    $("#icon").attr("class", className[index]);
+                }, 30);
+                //change button
+                $("#startID").prop("disabled",true);
+                $("#stopID").prop("disabled",false);
+            });
+            $("#stopID").click(function () {
+                //end interval
+                clearInterval(startID);
+                $("#startID").prop("disabled",false);
+                $("#stopID").prop("disabled",true);
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="imageContainer">
+        <i id="icon" class="iconfont icon-shuzi-"></i>
+        <!--        <i id="icon" class="iconfont icon-shuzi61"></i>-->
+        <!--        <i class="iconfont icon-shuzi"></i>-->
+        <!--        <i class="iconfont icon-shuzi1932"></i>-->
+        <!--        <i class="iconfont icon-shuzi9"></i>-->
+
+    </div>
+    <div class="buttonContainer">
+        <!--button-->
+        <input id="startID" type="button" value="开始">
+        <input id="stopID" type="button" value="停止">
+    </div>
+</div>
+
+</body>
+</html>

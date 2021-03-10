@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>c</title>
+    <!-- 包含头部信息用于适应不同设备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 包含 bootstrap 样式表 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" >
+
+</head>
+<body style="font-size: medium; text-align: center;">
+    <div id="pint"></div>
+    <div>注：红色字体为最小值</div>
+    <table id="table0" border="1" align="center">
+        <tr>
+            <th>人/组</th>
+            <th>预计实验次数</th>
+        </tr>
+
+    </table>
+    <a href="https://joiy908.github.io/EX0.html" ><button>遍历版本(慢)</button></a>
+    <script>
+        let totalNum = prompt('请输入地区总人数(人)：');
+        let rate = prompt('请输入该地区患病人数占比(%)：');
+
+
+        let groupMemberNum;
+        let testNum;
+        let list = [];
+        function addToTable(i){
+            testNum = totalNum*(1+i-i*(1-rate/100)**i)/i;
+            list.push(testNum);
+
+            //创建一个tr
+            let tr = document.createElement("tr");
+            //创建2 td
+            let nameTd = document.createElement("td");
+            let numTd = document.createElement("td");
+            //创建一个a元素
+            // let a = document.createElement("a");
+            //创建文本节点
+            let nameText = document.createTextNode(i);
+            let numText = document.createTextNode(testNum.toFixed(2));
+            //将文本添加到td中
+            nameTd.appendChild(nameText);
+            numTd.appendChild(numText);
+
+            //将td添加到tr中
+            tr.appendChild(nameTd);
+            tr.appendChild(numTd);
+            //获取table,将tr添加到table
+            let table0 = document.getElementById("table0");
+            table0.appendChild(tr);
+        }
+        if(rate>=1 && rate<=30){
+            for(let i=2;i<=15;i++){
+                addToTable(i);
+            }
+            for(let i=16;i<100;i=i+11){
+                addToTable(i);
+            }
+            for(let i=105;i<(totalNum/5);i=i+Math.round(totalNum/120)){
+                addToTable(i);
+            }
+            for(let i=Math.round(totalNum/4);i<(totalNum/2);i=i+Math.round(totalNum/10)){
+                addToTable(i);
+            }
+        }
+        else if(rate>=0.1 && rate<1){
+            for(let i=2;i<=33;i++){
+                addToTable(i);
+            }
+            for(let i=34;i<100;i=i+11){
+                addToTable(i);
+            }
+            for(let i=105;i<(totalNum/5);i=i+Math.round(totalNum/120)){
+                addToTable(i);
+            }
+            for(let i=Math.round(totalNum/4);i<(totalNum/2);i=i+Math.round(totalNum/10)){
+                addToTable(i);
+            }
+        }
+        else if(rate>=0.01 && rate<0.1){
+            for(let i=2;i<=101;i++){
+                addToTable(i);
+            }
+            for(let i=105;i<200;i=i+15){
+                addToTable(i);
+            }
+            for(let i=235;i<(totalNum/5);i=i+Math.round(totalNum/120)){
+                addToTable(i);
+            }
+            for(let i=Math.round(totalNum/4);i<(totalNum/2);i=i+Math.round(totalNum/10)){
+                addToTable(i);
+            }
+        }
+        else if(rate>=0.001 && rate<0.01){
+            for(let i=2;i<101;i=i+8){
+                addToTable(i);
+            }
+            for(let i=101;i<318;i++){
+                addToTable(i);
+            }
+            for(let i=318;i<(totalNum/5);i=i+Math.round(totalNum/120)){
+                addToTable(i);
+            }
+            for(let i=Math.round(totalNum/4);i<(totalNum/2);i=i+Math.round(totalNum/10)){
+                addToTable(i);
+            }
+        }
+        else if(rate>=0.0001 && rate<0.001){
+            for(let i=2;i<101;i=i+8){
+                addToTable(i);
+            }
+            for(let i=101;i<317;i=i+28){
+                addToTable(i);
+            }
+            for(let i=317;i<1001;i++){
+                addToTable(i);
+            }
+            for(let i=Math.round(totalNum/3);i<(totalNum/2);i=i+Math.round(totalNum/10)){
+                addToTable(i);
+            }
+        }
+        else{
+            alert("患病人数占比太高(>30%)，不建议用分组方法。");
+            for(let i=2;i<=50;i=i+3){
+                addToTable(i);
+            }
+            for(let i=51;i<150;i=i+11){
+                addToTable(i);
+            }
+            for(let i=150;i<(totalNum/5);i=i+Math.round(totalNum/120)){
+                addToTable(i);
+            }
+            for(let i=(totalNum/3);i<(totalNum/2);i=i+Math.round(totalNum/10)){
+                addToTable(i);
+            }
+
+        }
+        //get min
+        let min=Math.min(...list);
+        let minIndex = list.findIndex((item, index) => {
+            return item === min;
+        });
+        //标红最小值
+        let table0 = document.getElementById("table0")
+        for(let k=0;k<table0.rows.length;k++){
+            let rowtmp = table0.rows[k];
+            for(let m=0;m<rowtmp.cells.length;m++){
+                // console.log(rowtmp.cells[m].innerText);
+                if(rowtmp.cells[m].innerText === min.toFixed(2)){
+                    rowtmp.cells[m-1].style.color = "red";
+                    rowtmp.cells[m].style.color = "red";  //双重循环设置所有的单元格字体颜色
+                }
+
+            }
+            //  rowtmp.style.color="black";  //设置行的字体颜色
+            rowtmp.style.cssText="background-color:#c5e2e2";  //设置行的背景颜色
+        }
+        //改表上方文字
+        if(rate>30){
+            let pint = document.getElementById("pint");
+            pint.innerText = "参考数据(部分)："+"\n总人数：" + totalNum + "\t患病人数占比:" + rate + "%"
+        }else {
+            let pint = document.getElementById("pint");
+            pint.innerText = "参数：\n总人数：" + totalNum + "\t患病人数占比:" + rate + "%\n结果:\n" + "当" + (minIndex + 2) + "人/组时，平均实验次数最少" + "\n预计实验次数：" + Math.round(min);
+            alert("当" + (minIndex + 2) + "人/组时，平均实验次数最少" + "\n预计实验次数：" + (Math.round(min) + 1));
+        }
+
+    </script>
+
+</body>
+</html>

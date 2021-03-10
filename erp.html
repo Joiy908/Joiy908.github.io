@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成本预算</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        *{
+            /*border: solid;*/
+            padding: 0;
+            margin: 0;
+            /*保证box大小*/
+            box-sizing: border-box;
+        }
+
+        /*字体*/
+        body,input{
+            font-family: 微软雅黑,sans-serif;
+        }
+
+        /*container占满整个屏幕z0*/
+        /*.container{*/
+        /*    position: relative;*/
+        /*    width: 100%;*/
+        /*    min-height: 100vh;*/
+        /*    !*background-color: #7ED321;*!*/
+        /*    overflow: hidden;*/
+
+        /*}*/
+        /*.form-container{*/
+        /*    width: 100%;*/
+        /*    min-height: 100vh;*/
+        /*    display: flex;*/
+        /*    flex-direction: column;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*}*/
+        h2{
+            font-size: 2.2rem;
+            /*color: red;*/
+            margin-bottom: 10px;
+        }
+        /*form放在flex里，项目在容器中央，flex内部元素竖着排列*/
+        form {
+            /*border: solid;*/
+            padding-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .input-field {
+            max-width: 280px;
+            width: 100%;
+            background-color: #f0f0f0;
+            margin: 10px 0;
+            height: 25px;
+            border-radius: 55px;
+            display: grid;
+            grid-template-columns: 30% 70%;
+            padding: 0 0.8rem;
+            position: relative;
+        }
+
+
+        .input-field input::placeholder {
+            color: #aaa;
+            font-weight: 500;
+        }
+
+        .btn {
+            width: 150px;
+            height: 49px;
+            border: none;
+            outline: none;
+            border-radius: 49px;
+            cursor: pointer;
+            background-color: #5995fd;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            font-weight: 300;
+            font-size: large;
+            margin: 10px 0;
+            /*transition: .5s;*/
+        }
+
+        /*鼠标经过变色*/
+        .btn:hover {
+            background-color: #4d84e2;
+        }
+    </style>
+
+</head>
+<body>
+<!--<div class="container">-->
+<div class="form-container">
+    <form action="#" class="sigh-in-form">
+        <h2>成本预算</h2>
+        <p>(注意不要出现小于百)</p>
+        <div class="input-field" id="test"></div>
+        <div class="input-field">
+<!--            <i class="iconfont icon-dengluyonghu"></i>-->
+            <div>原材料</div>
+            <input type="text"  placeholder="去年+今年" id="yuanLiao"/>
+        </div>
+        <div class="input-field">
+            <div>人员工资</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="P*Q" id="gongZi"/>
+        </div>
+        <div class="input-field">
+            <div>产品数</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="=个" id="Num"/>
+        </div>
+        <div class="input-field">
+            <div>地租</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" value="2000" placeholder="w￥" id="diZhu" />
+        </div>
+        <div class="input-field">
+            <div>技术改造</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" value="0" placeholder="w￥" id="jiGai" />
+        </div>
+        <div class="input-field">
+            <div>广告费</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="w￥" id="guangGao"/>
+        </div>
+        <div class="input-field">
+            <div>管理费</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" value="2000" placeholder="w￥" id="guanLi"/>
+        </div>
+        <div class="input-field">
+            <div>利息</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="w￥" id="liXi"/>
+        </div>
+
+        <div class="input-field">
+            <div>罚款</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="w￥" id="faKuan"/>
+        </div>
+
+        <div class="input-field">
+            <div>政补贴率</div>
+<!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="%" id="buTie"/>
+        </div>
+
+        <div class="input-field">
+            <div>定价</div>
+            <!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="w￥" id="price"/>
+        </div>
+        <div class="input-field">
+            <div>增值税率</div>
+            <!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="%" id="zengZhi"/>
+        </div>
+        <div class="input-field">
+            <div>所得税率</div>
+            <!--            <i class="iconfont icon-mima1"></i>-->
+            <input type="text" placeholder="%" id="suoDe"/>
+        </div>
+        <input type="button" value="查询" class="btn">
+    </form>
+</div>
+<!--</div>-->
+<script>
+    $.extend({
+        getNum:function (a){
+            return ((a/100).toFixed(0))*100;
+        }
+    });
+    $(".btn").click(function (){
+        let yuanLiao = Number($("#yuanLiao").val());
+        let diZu = Number($("#diZhu").val());
+        let gongZi = Number($("#gongZi").val());
+        let jiGai = Number($("#jiGai").val());
+        let guangGao = Number($("#guangGao").val());
+        let guanLi = Number($("#guanLi").val());
+        let liXi = Number($("#liXi").val());
+        let faKuan = Number($("#faKuan").val());
+
+        let Num = Number($("#Num").val());
+        let price = Number($("#price").val());
+        let zengZhi = Number($("#zengZhi").val())/100;
+        let suoDe = Number($("#suoDe").val())/100;
+        // let total = +jiGai+guangGao+guanLi+liXi+faKuan-buTie;
+        // let sigle = parseFloat(total/Num).toFixed(2);
+        //税后销售收入
+        let after = ((price*Num)/(1+zengZhi)).toFixed(0);
+        after = ((after/100).toFixed(0))*100;
+        //补贴
+        let buTie = Number($("#buTie").val())/100;
+        buTie = $.getNum(buTie);
+        //总成本
+        let fee = (yuanLiao+diZu+gongZi)+(guangGao+jiGai+guanLi+liXi)+faKuan-buTie;
+        //净利润
+        // let profit = (after - fee)-(((after - fee)*suoDe/100).toFixed(0))*100;
+        let profit;
+        if((after-fee)<0){
+            profit = after - fee;
+        }
+        else {
+            profit = (after-fee)-$.getNum((after-fee)*suoDe);
+        }
+        // alert("不含税成本："+total+"w\n单个成本："+sigle+"");
+
+        // alert(after);
+        // alert(fee);
+        // alert(profit);
+        alert("税后销售收入:"+after+"\t\t单个价格:"+(after/Num).toFixed(2)+"\n总成本: "+fee+"\t\t单个成本:"+(fee/Num).toFixed(2)+"\n净利润:"+profit);
+
+    })
+
+</script>
+</body>
+
+</html>

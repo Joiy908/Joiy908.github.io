@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get alarm</title>
+    <style>
+
+        *{
+            border: solid;
+            padding: 0;
+            margin: 0;
+            /*保证box大小*/
+            box-sizing: border-box;
+        }
+        /*字体*/
+        body,input{
+            font-family: 黑体,sans-serif;
+        }
+        /*container占满整个屏幕z0*/
+        .container {
+            /*position: relative;*/
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+
+            /*background: url(img/lottery/11.jpg) no-repeat center center; !*加载背景图*! !* 背景图不平铺 *!*/
+            /*background-size: cover; !* 让背景图基于容器大小伸缩 *!*/
+            /*background-attachment: fixed; !* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 *!*/
+            background-color: #579a5b;
+
+            display: grid;
+            grid-template-rows: 30% 25% 25%;
+        }
+        .output {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            font-size: 5rem;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            let nowStamp = new Date().getTime();//当前的时间戳(毫秒)
+            let interval = 6.5 * 60 * 60 * 1000;
+            //格式化时间获取年月日
+            let dateAfter = new Date(nowStamp + interval);
+            document.getElementById("first").innerHTML = 'After 6.5 hours:<br><br>' + dateAfter.getHours() + ':' + dateAfter.getMinutes();
+
+            interval = 8 * 60 * 60 * 1000;
+            //格式化时间获取年月日
+            dateAfter = new Date(nowStamp + interval);
+            document.getElementById("second").innerHTML = 'After 8.0 hours:<br><br>' + dateAfter.getHours() + ':' + dateAfter.getMinutes();
+            // test 倒计时
+            let accountantTest = new Date("2021-05-14 8:00:00").getTime();
+            interval = accountantTest - nowStamp;
+            document.getElementById("left").innerHTML = "after:<br>&ensp;" + Math.round(interval/1000/3600/24) +　" 天<br>&ensp;&ensp;(" + Math.round(interval/1000/3600/24/7) +" 周)<br>·会计";
+            let sixTest = new Date("2021-06-19 8:00:00").getTime();
+            interval = sixTest - nowStamp;
+            document.getElementById("right").innerHTML = "after:<br>&ensp;" + Math.round(interval/1000/3600/24) +　" 天<br>&ensp;&ensp;(" + Math.round(interval/1000/3600/24/7) +" 周)<br>·6级";
+        };
+    </script>
+</head>
+<body>
+<div class="container">
+    <div></div>
+    <div class="output">
+        <div class="first" id="first"></div>
+        <div class="second" id="second"></div>
+    </div>
+    <div id="timer" class="output">
+        <div class="first" id="left"></div>
+        <div class="second" id="right"></div>
+    </div>
+
+</div>
+
+</body>
+</html>

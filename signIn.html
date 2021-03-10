@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sigh in test</title>
+    <!--    适应不同设备-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    <link rel="stylesheet" href="style.css">-->
+    <style>
+        @import url("http://at.alicdn.com/t/font_2213028_abixy1xkopi.css");
+
+        /*所有板块都无内外边距*/
+        * {
+            /*border: solid;*/
+            padding: 0;
+            margin: 0;
+            /*保证box大小*/
+            box-sizing: border-box;
+        }
+
+        /*字体*/
+        body, input {
+            font-family: 微软雅黑, sans-serif;
+        }
+
+        /*container占满整个屏幕z0*/
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            /*background-color: #7ED321;*/
+            overflow: hidden;
+        }
+
+        /*画蓝圈在z6*/
+        .container:before {
+            content: '';
+            position: absolute;
+            width: 2000px;
+            height: 2000px;
+            border-radius: 50%;
+            background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
+            top: -10%;
+            right: 48%;
+            transform: translateY(-50%);
+
+            z-index: 6;
+            transition: 1.8s ease-in-out;
+        }
+
+        /*forms-container位置绝对,*/
+        .forms-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        /*为了方便调整form位置，分担form属性*/
+        .signin-signup {
+            position: absolute;
+            top: 45%;
+            transform: translate(-50%, -50%);
+            left: 75%;
+            width: 50%;
+
+            /*grid网格陈列方式*/
+            display: grid;
+            /*设置网格列数，只有一列，fr是单位（还可以用%，px，混合使用），片段，1fr 1fr就表示两个同宽列*/
+            grid-template-columns: 1fr;
+            /*z-index规定元素的堆叠顺序，越大距离用户越近*/
+            z-index: 5;
+            transition: 1s 0.7s ease-in-out;
+        }
+
+        /*form以flex方式陈列(flexible box)，项目在容器中央，flex内部元素竖着排列*/
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5rem;
+
+            overflow: hidden;
+            /*把form限制到一个格子里，重叠起来*/
+            /*从第一条线开始到第二条线结束*/
+            grid-column-start: 1;
+            grid-column-end: 2;
+            /*等同于 grid-column: 1 / 2;*/
+            grid-row: 1 / 2;
+            transition: all 0.2s 0.7s;
+        }
+
+
+        form.sign-in-form {
+            z-index: 2;
+        }
+
+        form.sign-up-form {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            /*color: red;*/
+            margin-bottom: 10px;
+        }
+
+        /*input div 配置*/
+        .input-field {
+            max-width: 380px;
+            width: 100%;
+            background-color: #f0f0f0;
+            margin: 10px 0;
+            height: 55px;
+            border-radius: 55px;
+
+            display: grid;
+            grid-template-columns: 15% 85%;
+            padding: 0 0.4rem;
+            position: relative;
+        }
+
+        .input-field i {
+            text-align: center;
+            line-height: 55px;
+            color: #acacac;
+            transition: 0.5s;
+            font-size: 1.1rem;
+        }
+
+        /*隐藏input type=text，与div合为一体*/
+        .input-field input {
+            background: none;
+            border: none;
+            /*outline是点击时的边框*/
+            outline: none;
+            line-height: 2;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .input-field input::placeholder {
+            color: #aaa;
+            font-weight: 500;
+        }
+
+        .btn {
+            width: 150px;
+            height: 49px;
+            border: none;
+            outline: none;
+            border-radius: 49px;
+            cursor: pointer;
+            background-color: #5995fd;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            font-weight: 300;
+            font-size: large;
+            margin: 10px 0;
+            transition: .5s;
+        }
+
+        /*鼠标经过变色*/
+        .btn:hover {
+            background-color: #4d84e2;
+        }
+
+
+        .social-text {
+            /*1rem=16px*/
+            padding: 0.7rem 0;
+            font-size: 1rem;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icon {
+            height: 46px;
+            width: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 0.45rem;
+            color: #333;
+            border-radius: 50%;
+            border: 1px solid #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #4481eb;
+            border-color: #4481eb;
+        }
+
+
+        /*把屏幕分为两半*/
+        .panels-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            /*background-color: green;*/
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+
+        .image {
+            width: 100%;
+            transition: 1.1s .4s ease-in-out;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            /*align-items: flex-end;*/
+            justify-content: space-around;
+            text-align: center;
+            /*panel在z7,放在蓝圈z6上面*/
+            z-index: 7;
+        }
+
+        .left-panel {
+            /*上层panel鼠标有效*/
+            pointer-events: all;
+            padding: 3rem 17% 2rem 12%;
+        }
+
+        .right-panel {
+            pointer-events: none;
+            padding: 3rem 12% 2rem 17%;
+        }
+
+        .panel .content {
+            color: #FFFFFF;
+            transition: .9s .6s ease-in-out;
+        }
+
+        .panel h3 {
+            font-weight: 600;
+            line-height: 1;
+            font-size: 1.5rem;
+        }
+
+        .panel p {
+            font-size: 0.95rem;
+            padding: 0.7rem 0;
+        }
+
+        /*给btn加白边框*/
+        .btn.transparent {
+            margin: 0;
+            background: none;
+            border: 2px solid #fff;
+            width: 130px;
+            height: 41px;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .btn.transparent:hover {
+            background-color: powderblue;
+        }
+
+
+        /*把right-panel图片移走*/
+        .right-panel .content, .right-panel .image {
+            transform: translateX(800px);
+        }
+
+
+        /*Animation*/
+
+        .container.sign-up-mode:before {
+            transform: translate(100%, -50%);
+            right: 52%;
+        }
+
+        /*left-panel移走，right-panel移动来*/
+        .container.sign-up-mode .left-panel .image,
+        .container.sign-up-mode .left-panel .content {
+            transform: translateX(-800px);
+        }
+
+        .container.sign-up-mode .right-panel .image,
+        .container.sign-up-mode .right-panel .content {
+            transform: translateX(0%);
+        }
+
+        /*把signin-signup挪到左边*/
+        .container.sign-up-mode .signin-signup {
+            left: 25%;
+        }
+
+        /*pointer有效性切换*/
+        .container.sign-up-mode .left-panel {
+            pointer-events: none;
+        }
+
+        .container.sign-up-mode .right-panel {
+            pointer-events: all;
+        }
+
+
+        /*form的z-index前后互换*/
+        .container.sign-up-mode form.sign-up-form {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .container.sign-up-mode form.sign-in-form {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @media (max-width: 870px) {
+            .container {
+                min-height: 680px;
+                height: 100vh;
+            }
+
+            .signin-signup {
+                width: 100%;
+                top: 85%;
+                transform: translate(-50%, -100%);
+                transition: 1s 0.8s ease-in-out;
+            }
+
+            .signin-signup,
+            .container.sign-up-mode .signin-signup {
+                left: 50%;
+            }
+
+            .panels-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 2fr 1fr;
+            }
+
+            .panel {
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                padding: 2.5rem 8%;
+                grid-column: 1 / 2;
+            }
+
+            .right-panel {
+                grid-row: 3 / 4;
+            }
+
+            .left-panel {
+                grid-row: 1 / 2;
+            }
+
+            .image {
+                width: 200px;
+                transition: transform 0.9s ease-in-out;
+                transition-delay: 0.6s;
+            }
+
+            .panel .content {
+                padding-right: 15%;
+                transition: transform 0.9s ease-in-out;
+                transition-delay: 0.8s;
+            }
+
+            .panel h3 {
+                font-size: 1.2rem;
+            }
+
+            .panel p {
+                font-size: 0.7rem;
+                padding: 0.5rem 0;
+            }
+
+            .btn.transparent {
+                width: 110px;
+                height: 35px;
+                font-size: 0.7rem;
+            }
+
+            .container:before {
+                width: 1500px;
+                height: 1500px;
+                transform: translateX(-50%);
+                left: 30%;
+                bottom: 68%;
+                right: initial;
+                top: initial;
+                transition: 2s ease-in-out;
+            }
+
+            .container.sign-up-mode:before {
+                transform: translate(-50%, 100%);
+                bottom: 32%;
+                right: initial;
+            }
+
+            .container.sign-up-mode .left-panel .image,
+            .container.sign-up-mode .left-panel .content {
+                transform: translateY(-300px);
+            }
+
+            .container.sign-up-mode .right-panel .image,
+            .container.sign-up-mode .right-panel .content {
+                transform: translateY(-50px);
+            }
+
+            .right-panel .image,
+            .right-panel .content {
+                transform: translateY(300px);
+            }
+
+            .container.sign-up-mode .signin-signup {
+                top: 5%;
+                transform: translate(-50%, 20%);
+            }
+        }
+
+        @media (max-width: 570px) {
+
+            form {
+                padding: 0 1.5rem;
+            }
+
+            .image {
+                display: none;
+            }
+
+            .panel .content {
+                padding: 0.5rem 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .container:before {
+                bottom: 72%;
+                left: 50%;
+            }
+
+            .container.sign-up-mode:before {
+                bottom: 35%;
+                left: 50%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <form action="https://joiy908.github.io" class="sign-in-form">
+                <h2>登录</h2>
+                <div class="input-field">
+                    <i class="iconfont icon-dengluyonghu"></i>
+                    <input type="text" placeholder="用户名"/>
+                </div>
+                <div class="input-field">
+                    <i class="iconfont icon-mima1"></i>
+                    <input type="password" placeholder="密码"/>
+                </div>
+                <input type="submit" value="登录" class="btn">
+                <p class="social-text" style="align-items: center"> 或者选择其他社交平台账号登录：</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="iconfont icon-qq02"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="iconfont icon-weixin"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="iconfont icon-github"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="iconfont icon-weibo"></i>
+                    </a>
+                </div>
+            </form>
+            <form action="#" class="sign-up-form">
+                <h2>注册</h2>
+                <div class="input-field">
+                    <i class="iconfont icon-dengluyonghu"></i>
+                    <input type="text" placeholder="用户名"/>
+                </div>
+                <div class="input-field">
+                    <i class="iconfont icon-youxiang"></i>
+                    <input type="text" placeholder="邮箱"/>
+                </div>
+                <div class="input-field">
+                    <i class="iconfont icon-mima1"></i>
+                    <input type="password" placeholder="密码"/>
+                </div>
+                <input type="submit" value="注册" class="btn">
+            </form>
+        </div>
+    </div>
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>第一次来吗？</h3>
+                <p>我是一段看不懂的描述</p>
+                <button class="btn transparent" id="sign-up-btn">注册</button>
+            </div>
+            <img src="img/log.svg" class="image">
+        </div>
+        <div class="panel right-panel">
+            <div class="content">
+                <h3>已经注册了？</h3>
+                <p>我是一段看不懂的描述</p>
+                <button class="btn transparent" id="sign-in-btn">登录</button>
+            </div>
+            <img src="img/register.svg" class="image">
+        </div>
+    </div>
+</div>
+
+<script>
+    let sign_in_btn = document.querySelector("#sign-in-btn");
+    let sign_up_btn = document.querySelector("#sign-up-btn");
+    let container = document.querySelector(".container");
+
+    sign_up_btn.addEventListener('click', () => {
+        container.classList.add("sign-up-mode");
+    })
+    sign_in_btn.addEventListener('click', () => {
+        container.classList.remove("sign-up-mode");
+    })
+</script>
+
+</body>
+</html>
